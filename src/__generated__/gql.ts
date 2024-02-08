@@ -13,8 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query AnimeList {\n    Page {\n      media {\n        id\n        title {\n          english\n          native\n        }\n        description\n        seasonYear\n        coverImage {\n          extraLarge\n        }\n      }\n    }\n}\n": types.AnimeListDocument,
-    "\n    query AnimeDetails($id: Int) {\n      Page {\n        media(id: $id) {\n          id\n          title {\n            english\n            native\n          }\n          description\n          coverImage {\n            extraLarge\n          }\n          duration\n          averageScore\n          seasonYear\n          episodes\n          studios {\n            nodes {\n              name\n            }\n          }\n        }\n      }\n}\n": types.AnimeDetailsDocument,
+    "\nquery getCharacters {\n  characters {\n    results {\n      gender\n      id\n      image\n      name\n      species\n      status\n    }\n  }\n} \n": types.GetCharactersDocument,
+    "\n    query characterDetails($id: ID!){\n    character(id: $id){\n        id\n        name\n        status\n        species\n        type\n        gender\n        origin{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        location{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        image\n        episode{\n            id\n            name\n            air_date\n            episode\n            created\n        }\n    }\n}\n": types.CharacterDetailsDocument,
+    "\nquery getEpisodes {\n  episodes {\n    results {\n      name\n      air_date\n      characters {\n        id\n        name\n      }\n    }\n  }\n}\n": types.GetEpisodesDocument,
 };
 
 /**
@@ -34,11 +35,15 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query AnimeList {\n    Page {\n      media {\n        id\n        title {\n          english\n          native\n        }\n        description\n        seasonYear\n        coverImage {\n          extraLarge\n        }\n      }\n    }\n}\n"): (typeof documents)["\n  query AnimeList {\n    Page {\n      media {\n        id\n        title {\n          english\n          native\n        }\n        description\n        seasonYear\n        coverImage {\n          extraLarge\n        }\n      }\n    }\n}\n"];
+export function gql(source: "\nquery getCharacters {\n  characters {\n    results {\n      gender\n      id\n      image\n      name\n      species\n      status\n    }\n  }\n} \n"): (typeof documents)["\nquery getCharacters {\n  characters {\n    results {\n      gender\n      id\n      image\n      name\n      species\n      status\n    }\n  }\n} \n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query AnimeDetails($id: Int) {\n      Page {\n        media(id: $id) {\n          id\n          title {\n            english\n            native\n          }\n          description\n          coverImage {\n            extraLarge\n          }\n          duration\n          averageScore\n          seasonYear\n          episodes\n          studios {\n            nodes {\n              name\n            }\n          }\n        }\n      }\n}\n"): (typeof documents)["\n    query AnimeDetails($id: Int) {\n      Page {\n        media(id: $id) {\n          id\n          title {\n            english\n            native\n          }\n          description\n          coverImage {\n            extraLarge\n          }\n          duration\n          averageScore\n          seasonYear\n          episodes\n          studios {\n            nodes {\n              name\n            }\n          }\n        }\n      }\n}\n"];
+export function gql(source: "\n    query characterDetails($id: ID!){\n    character(id: $id){\n        id\n        name\n        status\n        species\n        type\n        gender\n        origin{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        location{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        image\n        episode{\n            id\n            name\n            air_date\n            episode\n            created\n        }\n    }\n}\n"): (typeof documents)["\n    query characterDetails($id: ID!){\n    character(id: $id){\n        id\n        name\n        status\n        species\n        type\n        gender\n        origin{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        location{\n            id\n            name\n            type\n            dimension\n            created\n        }\n        image\n        episode{\n            id\n            name\n            air_date\n            episode\n            created\n        }\n    }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery getEpisodes {\n  episodes {\n    results {\n      name\n      air_date\n      characters {\n        id\n        name\n      }\n    }\n  }\n}\n"): (typeof documents)["\nquery getEpisodes {\n  episodes {\n    results {\n      name\n      air_date\n      characters {\n        id\n        name\n      }\n    }\n  }\n}\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

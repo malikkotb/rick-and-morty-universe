@@ -1,50 +1,68 @@
 import { gql } from "../__generated__";
 
-const GET_ANIME_LIST = gql(`
-  query AnimeList {
-    Page {
-      media {
+const GET_CHARACTERS = gql(`
+query getCharacters {
+  characters {
+    results {
+      gender
+      id
+      image
+      name
+      species
+      status
+    }
+  }
+} 
+`);
+
+const GET_CHARACTER_DETAILS = gql(`
+    query characterDetails($id: ID!){
+    character(id: $id){
         id
-        title {
-          english
-          native
+        name
+        status
+        species
+        type
+        gender
+        origin{
+            id
+            name
+            type
+            dimension
+            created
         }
-        description
-        seasonYear
-        coverImage {
-          extraLarge
+        location{
+            id
+            name
+            type
+            dimension
+            created
         }
-      }
+        image
+        episode{
+            id
+            name
+            air_date
+            episode
+            created
+        }
     }
 }
 `);
 
-// for anime details by ID -> get studio, average rating / 100, episode duration in minutes
-const GET_ANIME_DETAILS = gql(`
-    query AnimeDetails($id: Int) {
-      Page {
-        media(id: $id) {
-          id
-          title {
-            english
-            native
-          }
-          description
-          coverImage {
-            extraLarge
-          }
-          duration
-          averageScore
-          seasonYear
-          episodes
-          studios {
-            nodes {
-              name
-            }
-          }
-        }
+const GET_EPISODES = gql(`
+query getEpisodes {
+  episodes {
+    results {
+      name
+      air_date
+      characters {
+        id
+        name
       }
+    }
+  }
 }
 `);
 
-export { GET_ANIME_LIST, GET_ANIME_DETAILS };
+export { GET_CHARACTERS, GET_CHARACTER_DETAILS, GET_EPISODES };
