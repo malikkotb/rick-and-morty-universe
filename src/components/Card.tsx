@@ -4,30 +4,6 @@ import { useNavigate} from "react-router-dom"
 import { Episode, Maybe, Scalars } from "../__generated__/graphql";
 const { Meta } = Card;
 
-
-
-export type Media = {
-  __typename?: "Media";
-  id: number;
-  description?: string | null;
-  averageScore?: number | null;
-  seasonYear?: number | null;
-  episodes?: number | null;
-  title?: {
-    __typename?: "MediaTitle";
-    english?: string | null;
-    native?: string | null;
-  } | null;
-  coverImage?: {
-    __typename?: "MediaCoverImage";
-    extraLarge?: string | null;
-  } | null;
-  studios?: {
-    __typename?: "StudioConnection";
-    nodes?: Array<{ __typename?: "Studio"; name: string } | null> | null;
-  } | null;
-} | null;
-
 export type Character = {
   __typename?: 'Character';
   /** Time at which the character was created in the database. */

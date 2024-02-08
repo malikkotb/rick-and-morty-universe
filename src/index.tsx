@@ -7,7 +7,6 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
-import AppHeader from "./components/Header";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -20,7 +19,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <AppHeader />
       <App />
     </ApolloProvider>
   </React.StrictMode>
